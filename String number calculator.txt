@@ -1,1 +1,55 @@
-s
+/* package codechef; // don't place package name! */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+/* Name of the class has to be "Main" only if the class is public. */
+class Calculator
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+	try
+	{
+	    Scanner in=new Scanner(System.in);
+	    String s=in.nextLine();
+	    String nos="";
+	    String sym="";
+	    String possibilities="+-*/%";
+	    for(int i=0;i<s.length();i++)
+	    {
+	        char ch=s.charAt(i);
+	        if(Character.isDigit(ch))
+	        nos+=ch;
+	        else if(possibilities.contains(ch+""))
+	        sym+=ch;
+	    }
+	    int res=0;
+	    int no1=nos.charAt(0)-'0';
+	    int no2=nos.charAt(1)-'0';
+	    res=eval(no1,no2,sym.charAt(0));
+	    for(int i=2;i<nos.length();i++)
+	    {
+	        char ch=sym.charAt(i-1);int no3=nos.charAt(i)-'0';
+	        res=eval(res,no3,ch);
+	    }
+	    System.out.println(res);
+	}
+	catch(Exception e)
+	{
+	    
+	}
+	}
+	public static int eval(int no1,int no2,char ch)
+	{
+	    if(ch=='+')
+	    return no1+no2;
+	    else if(ch=='-')
+	    return no1-no2;
+	    else if(ch=='*')
+	    return no1*no2;
+	    else if(ch=='/')
+	    return no1/no2;
+	    return no1%no2;
+	}
+}
